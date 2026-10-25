@@ -1,27 +1,28 @@
 def converte(numeroEmRomano):
+    tabela = {}
+    tabela["I"] = 1
+    tabela["V"] = 5
+    tabela["X"] = 10
+    tabela["L"] = 50
+    tabela["C"] = 100
+    tabela["D"] = 500
+    tabela["M"] = 1000  # Corrigido de 10000 para 1000
 
-  tabela = {};
-  tabela['I'] = 1;
-  tabela['V'] = 5;
-  tabela['X'] = 10;
-  tabela['L'] = 50;
-  tabela['C'] = 100;
-  tabela['D'] = 500;
-  tabela['M'] = 10000;
-  
-  acumulador = 0;
-  ultimovizinhodireita = 0;
-  for i in reversed(range(len(numeroEmRomano))):
-    atual = 0;
-    numCorrente = numeroEmRomano[i];    
-    if(numCorrente in tabela):      
-      atual = tabela[numCorrente];      
+    acumulador = 0
+    ultimovizinhodireita = 0
 
-    multiplicador = 1;
-    if(atual < ultimovizinhodireita):
-      multiplicador = 1;
+    for i in reversed(range(len(numeroEmRomano))):
+        atual = 0
+        numCorrente = numeroEmRomano[i]
 
-    acumulador += atual * multiplicador;       
-    ultimovizinhodireita = atual;
+        if numCorrente in tabela:
+            atual = tabela[numCorrente]
 
-  return acumulador;
+        multiplicador = 1
+        if atual < ultimovizinhodireita:
+            multiplicador = -1  # Corrigido de 1 para -1 para subtrair
+
+        acumulador += atual * multiplicador
+        ultimovizinhodireita = atual
+
+    return acumulador
